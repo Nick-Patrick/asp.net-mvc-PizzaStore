@@ -1,0 +1,164 @@
+﻿html,body {
+    font-family:Calibri,Arial;
+    margin:0;
+    padding:0;
+}
+
+li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+#header {
+    background-color:#ff6a00;
+    border-bottom:2px solid #111;
+    color:white;
+    padding:1em;
+    text-align:center;
+}
+
+h1 {
+    clear: both;
+}
+
+    h1 a {
+        text-decoration: none;
+        color: white;
+    }
+
+#content {
+    padding: 1em;
+}
+
+.pizza {
+    border-bottom:1px solid #ae9797;
+}
+
+.pizza input {
+    color: white;
+    background-color:#ff6a00;
+    border: 1px solid black;
+    cursor:pointer;
+    padding:1em;
+}
+
+    .pizza input:hover {
+        background-color: #ff3200;    
+    }
+
+.cartTable {
+    margin-top:70px;
+    margin-bottom: 70px;
+}
+
+.continueButton {
+    text-align: center;
+    background-color: #ff6a00;
+    padding: 1.2em;
+    border: 1px solid black;
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+}
+
+    .continueButton:hover {
+        background-color: #ff3200;
+    }
+
+.continueCheckoutButton {
+    text-align: center;
+    background-color: #00812a;
+    padding: 1.2em;
+    padding-left:2em;
+    padding-right:2em;
+    border: 1px solid black;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+    .continueCheckoutButton:hover {
+        background-color: #005c16;
+    }
+
+.removeButton {
+    text-align: center;
+    background-color: #960808;
+    padding: .2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: 1px solid black;
+    color:white;
+    text-decoration:none;
+    font-weight:400;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+    .removeButton:hover {
+        background-color: #380a0a;
+    }
+
+#cartSummary {
+    float:right;
+    padding:1em;
+    background-color:#ed4f32;
+}
+
+    #cartSummary a {
+        text-align: center;
+        background-color: #960808;
+        padding: .2em;
+        padding-left: 1em;
+        padding-right: 1em;
+        border: 1px solid black;
+        color:white;
+        text-decoration:none;
+        font-weight:400;
+        cursor:pointer;
+        margin-left:20px;
+    }
+
+        #cartSummary a:hover {
+            background-color: #380a0a;
+        }
+    
+
+#login {
+    float:left;
+    display: block;
+    font-size: 1.1em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login a {
+        color:white;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 4px 3px;
+        text-decoration: none;
+    }
+
+        #login a:hover {
+            text-decoration: underline;
+        }
+
+    #login a.username {
+        color:white;
+        text-decoration:underline;
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+

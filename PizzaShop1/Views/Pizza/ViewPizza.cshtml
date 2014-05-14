@@ -1,0 +1,57 @@
+﻿@model PizzaShop1.Models.PizzaSelectViewModel
+
+@{
+    ViewBag.Title = "ViewPizza";
+}
+
+<h2>@Model.Pizza.Size @Model.Pizza.Name</h2>
+
+<h3>@Model.Pizza.Price.ToString("c")</h3>
+
+<p>@Model.Pizza.Description</p>
+
+  @using (Html.BeginForm("AddToCart", "Cart"))
+  {
+        @*Html.HiddenFor(id => id.Pizza.PizzaId, new { id = "PizzaId", @Name = "PizzaId"})*@
+        @Html.Hidden("PizzaId", Model.Pizza.PizzaId, new { @id = "PizzaId" })
+
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input class="continueCheckoutButton" type="submit" value="Add To Cart" />
+  }
+
+
+    
+
+<h3>Toppings</h3>
+<ul>
+@foreach (var topping in @Model.Pizza.PizzaToppings)
+{
+    <li>@topping.Name</li>
+}
+</ul>
+
+@if (Model.Pizza.Name == "Create Your Own")
+{
+    <h4>Add your toppings</h4>
+    foreach (var topping in @Model.Toppings)
+    {
+        <li>
+            @Ajax.ActionLink("Add " + @topping.Name + " (" + @topping.Price.ToString("c") + ")",
+            "AddCustomTopping",
+            new { toppingId = @topping.ToppingId },
+            new AjaxOptions
+            {
+                UpdateTargetId = "additionalToppings",
+                HttpMethod = "POST"
+            }
+            ) 
+        </li>
+    }
+    
+    <h4>Additional Toppings</h4>
+    <ul id="additionalToppings">
+
+    </ul>
+    
+}
+

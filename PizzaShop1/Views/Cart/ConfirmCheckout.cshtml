@@ -1,0 +1,45 @@
+﻿@model PizzaShop1.Models.ConfirmCheckoutViewModel
+
+
+@{
+    ViewBag.Title = "ConfirmCheckout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Order Placed.</h2>
+<h4>Cost: @Model.Order.PriceBeforeVouchers.ToString("c") + @ViewBag.DeliveryCost.ToString("c") (@ViewBag.DeliveryType)</h4>
+
+<h2>Delivery Details:</h2>
+
+<ul>
+    <li>@Model.User.FirstName</li>
+    <li>@Model.User.LastName</li>
+    <li>Address 1: @Model.User.Address1</li>
+    <li>Address 2: @Model.User.Address2</li>
+    <li>Town: @Model.User.Town</li>
+    <li>Postcode: @Model.User.Postcode</li>
+    <li>Telephone: @Model.User.Telephone</li>
+</ul>
+
+<h2>Total Price: @ViewBag.PriceIncDelivery.ToString("c") (@ViewBag.DeliveryType)</h2>
+
+<hr />
+
+<ul>
+@foreach (var pizza in Model.Pizzas)
+{
+    <h4>@pizza.Size @pizza.Name - @pizza.Price.ToString("c")</h4>
+    if (@pizza.Name == "Create Your Own")
+    {
+        <ul>
+            @foreach (var topping in Model.Toppings)
+            {
+                <li>@topping.Name - @topping.Price.ToString("c")</li>
+            }
+        </ul>
+    }
+}
+</ul>
+
+

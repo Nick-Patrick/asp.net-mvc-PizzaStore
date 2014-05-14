@@ -1,0 +1,14 @@
+﻿@model PizzaShop1.Models.CustomToppingViewModel
+
+@{
+    ViewBag.Title = "ViewTopping";
+}
+
+<h2>ViewTopping</h2>
+
+
+@foreach (var topping in Model.Toppings){
+    @topping.Name
+}
+
+    

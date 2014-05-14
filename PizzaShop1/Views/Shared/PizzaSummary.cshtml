@@ -1,0 +1,17 @@
+﻿@model PizzaShop1.Domain.Entities.Pizza
+
+<div class="pizza">
+    <h3>@Model.Size @Model.Name</h3>
+    @Model.Description
+    <h4>@Model.Price.ToString("c")</h4>
+    
+    @if(@Model.Name != "Create Your Own"){
+        using(Html.BeginForm("AddToCart", "Cart")){
+            @Html.HiddenFor( id => id.PizzaId)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" value="Add To Cart" >
+        }
+    }
+        @Html.ActionLink("View Pizza", "ViewPizza", @Model)
+    
+</div>

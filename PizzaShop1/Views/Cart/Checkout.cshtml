@@ -1,0 +1,65 @@
+﻿@model PizzaShop1.Models.CartCheckoutViewModel
+
+
+
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout:</h2>
+<ul>
+@using (Html.BeginForm()){
+    <li>@Html.EditorFor(u => u.User.FirstName)</li>
+    <li>@Html.EditorFor(u => u.User.LastName)</li>
+    <li>@Html.EditorFor(u => u.User.Address1)</li>
+    <li>@Html.EditorFor(u => u.User.Address2)</li>
+    <li>@Html.EditorFor(u => u.User.Town)</li>
+    <li>@Html.EditorFor(u => u.User.Postcode)</li>
+    <li>@Html.EditorFor(u => u.User.Telephone)</li>
+}
+</ul>
+<center>
+    @foreach (var deliveryType in Model.DeliveryTypes){
+       
+        @Html.ActionLink("Confirm Order - " + deliveryType.DeliveryType + " (" + deliveryType.Cost.ToString("c") + ")", "ConfirmCheckout",
+        "Cart",
+        new { deliveryId = deliveryType.DeliveryId },
+        new { @class = "continueButton" }
+        ) 
+         
+    }
+</center>  
+<br />
+<br />
+<center>
+    <input type="text" id="voucherEnter" name="voucherEnter" />
+    <input type="submit" id="voucherSubmit" value="Submit Voucher" class="continueButton" />
+ 
+
+    <script>
+        $("#voucherSubmit").click(function () {
+            $.ajax({
+                url: "/Cart/VoucherCheck",
+                data: { voucherCode: $("#voucherEnter").val() },
+                type: 'POST',
+                success: function (data) {
+                    $("#additionalToppings").html(data);
+                }
+            });
+        });
+    </script>
+
+    <h4 id="additionalToppings"></h4>
+
+</center> 
+
+
+
+
+         
+      
+
+
+

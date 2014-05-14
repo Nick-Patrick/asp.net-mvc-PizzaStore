@@ -1,0 +1,13 @@
+﻿@model PizzaShop1.Domain.Entities.Cart
+
+<section id="cartSummary">
+    Currently @Model.Lines.Sum(q => q.Quantity) item(s):
+    Price: @Model.GetTotalValue().ToString("c")
+
+    @Html.ActionLink("Basket", "Index", "Cart", new {returnUrl = Request.Url.PathAndQuery }, null)
+    
+         @if (WebSecurity.IsAuthenticated)
+    {
+        @Html.ActionLink("Retrieve Saved Order", "RetrieveSavedOrder", "Cart", new { @class="continueCheckoutButton" })
+    }
+</section>

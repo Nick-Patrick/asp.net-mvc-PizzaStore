@@ -1,0 +1,63 @@
+﻿@model PizzaShop1.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Shopping Cart</h2></center>
+
+<table class="cartTable" align="center" width="60%">
+
+    <tr>
+        <th align="left">Pizza</th>
+        <th>Quantity</th>
+        <th align="right">Price</th>
+        <th align="right">Subtotal</th>
+    </tr>
+
+    @foreach (var line in Model.Cart.Lines)
+    {
+        <tr>
+            <td>@line.Pizza.Size @line.Pizza.Name</td>
+            <td align="center">@line.Quantity</td>
+            <td align="right">@line.Pizza.Price.ToString("c")</td>
+            <td align="right">@((line.Quantity * line.Pizza.Price).ToString("c"))</td>
+            <td>
+                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                    @Html.Hidden("PizzaId", line.Pizza.PizzaId)
+                    @Html.HiddenFor(u => u.ReturnUrl)
+                    <input class="removeButton" type="submit" value="X" />
+                }
+            </td>
+        </tr>
+    }
+    <tr></tr>
+        <tr>
+            <td colspan="3"><h3>Total:</h3></td>
+            <td align="right"><h3>@Model.Cart.GetTotalValue().ToString("c")</h3></td>
+        </tr>
+</table>
+
+    @*Html.DropDownListFor(c => c.Cart.DeliveryId, new SelectList(Model.DeliveryTypes, "Cost", "DeliveryType"))*@
+
+
+
+
+<center>
+   
+    <a class="continueButton" href="@Model.ReturnUrl">Continue Shopping</a>
+    @Html.ActionLink("Checkout", "Checkout",
+        null,
+        new { @class = "continueCheckoutButton" }
+    )
+    @if(WebSecurity.IsAuthenticated){
+        @Html.ActionLink("Save Order", "SaveCurrentOrder", "Cart", new { @class = "continueCheckoutButton" })
+    }
+
+    @if (TempData["message"] != null)
+    {
+        @TempData["message"]
+    }
+</center>

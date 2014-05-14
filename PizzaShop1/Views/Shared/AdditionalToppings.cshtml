@@ -1,0 +1,9 @@
+﻿@model PizzaShop1.Models.AdditionalToppingsViewModel
+
+<div id="additionalToppings">
+    @foreach (var topping in @Model.Toppings)
+    {
+        <li>@topping.Name</li>
+    }
+
+</div>

@@ -1,0 +1,13 @@
+﻿@model PizzaShop1.Models.PizzaListViewModel
+
+@{
+    ViewBag.Title = "Pizzas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<center>
+@foreach (var p in Model.Pizzas){
+
+    Html.RenderPartial("PizzaSummary", p);
+    
+}</center>
